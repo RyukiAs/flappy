@@ -33,7 +33,7 @@ public class bird : MonoBehaviour
 			{
 				GameObject prefabInstance = Instantiate(prefab1, parentObj);
 				prefabs.Add(prefabInstance);
-				Debug.Log("prefab1: " + timer.ToString());
+				//Debug.Log("prefab1: " + timer.ToString());
 			}
 			if(randomInt == 2)
 			{
