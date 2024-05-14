@@ -26,16 +26,16 @@ public class bird : MonoBehaviour
 		gravity();
 		timer++;
 
-		if((timer % 350) == 0)
+		if ((timer % 350) == 0)
 		{
 			int randomInt = Random.Range(1, 4);
-			if(randomInt == 1)
+			if (randomInt == 1)
 			{
 				GameObject prefabInstance = Instantiate(prefab1, parentObj);
 				prefabs.Add(prefabInstance);
 				//Debug.Log("prefab1: " + timer.ToString());
 			}
-			if(randomInt == 2)
+			if (randomInt == 2)
 			{
 				GameObject prefabInstance = Instantiate(prefab2, parentObj);
 				prefabs.Add(prefabInstance);
@@ -52,39 +52,39 @@ public class bird : MonoBehaviour
 		TextMeshProUGUI text = timerObj.GetComponent<TextMeshProUGUI>();
 		text.text = timer.ToString();
 
-        for (int i = prefabs.Count - 1; i >= 0; i--)
-        {
-            GameObject obj = prefabs[i];
-            RectTransform prefabRect = obj.GetComponent<RectTransform>();
+		for (int i = prefabs.Count - 1; i >= 0; i--)
+		{
+			GameObject obj = prefabs[i];
+			RectTransform prefabRect = obj.GetComponent<RectTransform>();
 
-            if (prefabRect != null) // Make sure the RectTransform component exists
-            {
-                Vector2 currentPosition = prefabRect.anchoredPosition;
+			if (prefabRect != null) // Make sure the RectTransform component exists
+			{
+				Vector2 currentPosition = prefabRect.anchoredPosition;
 
-                // Add the offset to move the image up by 1 unit
-                currentPosition.x -= 1.5f;
+				// Add the offset to move the image up by 1 unit
+				currentPosition.x -= 1.5f;
 
-                // Check if the x-coordinate is below the threshold
-                if (currentPosition.x < -1150)
-                {
-                    // Remove the prefab from the list
-                    prefabs.RemoveAt(i);
+				// Check if the x-coordinate is below the threshold
+				if (currentPosition.x < -1150)
+				{
+					// Remove the prefab from the list
+					prefabs.RemoveAt(i);
 
-                    // Destroy the prefab after 0.5 seconds
-                    Destroy(obj, 0.5f);
-                }
-                else
-                {
-                    // Update the anchored position
-                    prefabRect.anchoredPosition = currentPosition;
-                }
-            }
-            else
-            {
-                Debug.LogWarning("Prefab is missing RectTransform component.");
-            }
-        }
-    }
+					// Destroy the prefab after 0.5 seconds
+					Destroy(obj, 0.5f);
+				}
+				else
+				{
+					// Update the anchored position
+					prefabRect.anchoredPosition = currentPosition;
+				}
+			}
+			else
+			{
+				Debug.LogWarning("Prefab is missing RectTransform component.");
+			}
+		}
+	}
 
 	public void tapBird()
 	{
@@ -95,7 +95,7 @@ public class bird : MonoBehaviour
 		Vector2 currentPosition = movement.anchoredPosition;
 
 		// Add the offset to move the image up by 30 pixels
-		currentPosition.y += 50;
+		currentPosition.y += 50;  // TODO: somehow make this move smoothly?
 
 		// Update the anchored position
 		movement.anchoredPosition = currentPosition;
@@ -110,7 +110,7 @@ public class bird : MonoBehaviour
 		Vector2 currentPosition = movement.anchoredPosition;
 
 		// Add the offset to move the image up by 30 pixels
-		currentPosition.y -= 1;
+		currentPosition.y -= 1.5f;
 
 		// Update the anchored position
 		movement.anchoredPosition = currentPosition;
