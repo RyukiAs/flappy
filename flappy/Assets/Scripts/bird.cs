@@ -52,26 +52,39 @@ public class bird : MonoBehaviour
 		TextMeshProUGUI text = timerObj.GetComponent<TextMeshProUGUI>();
 		text.text = timer.ToString();
 
-		foreach(GameObject obj in prefabs) 
-		{
-			RectTransform prefabRect = obj.GetComponent<RectTransform>();
+        for (int i = prefabs.Count - 1; i >= 0; i--)
+        {
+            GameObject obj = prefabs[i];
+            RectTransform prefabRect = obj.GetComponent<RectTransform>();
 
-			if (prefabRect != null) // Make sure the RectTransform component exists
-			{
-				Vector2 currentPosition = prefabRect.anchoredPosition;
+            if (prefabRect != null) // Make sure the RectTransform component exists
+            {
+                Vector2 currentPosition = prefabRect.anchoredPosition;
 
-				// Add the offset to move the image up by 30 pixels
-				currentPosition.x -= 1;
+                // Add the offset to move the image up by 1 unit
+                currentPosition.x -= 1;
 
-				// Update the anchored position
-				prefabRect.anchoredPosition = currentPosition;
-			}
-			else
-			{
-				Debug.LogWarning("Prefab is missing RectTransform component.");
-			}
-		}
-	}
+                // Check if the x-coordinate is below the threshold
+                if (currentPosition.x < -1150)
+                {
+                    // Remove the prefab from the list
+                    prefabs.RemoveAt(i);
+
+                    // Destroy the prefab after 0.5 seconds
+                    Destroy(obj, 0.5f);
+                }
+                else
+                {
+                    // Update the anchored position
+                    prefabRect.anchoredPosition = currentPosition;
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Prefab is missing RectTransform component.");
+            }
+        }
+    }
 
 	public void tapBird()
 	{
