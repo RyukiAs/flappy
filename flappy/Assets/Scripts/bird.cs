@@ -6,23 +6,18 @@ using UnityEngine;
 
 public class bird : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject prefab1;
-    [SerializeField]
-    private GameObject prefab2;
-    [SerializeField]
-    private GameObject prefab3;
-    [SerializeField]
-    private Transform parentObj;
+    [SerializeField] private GameObject prefab1;
+    [SerializeField] private GameObject prefab2;
+    [SerializeField] private GameObject prefab3;
+    [SerializeField] private Transform parentObj;
 
-
-    private List<GameObject> prefabs;
+    private List<GameObject> prefabs = new List<GameObject>();
     int timer;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        timer = 0;
     }
 
     // Update is called once per frame
@@ -30,7 +25,8 @@ public class bird : MonoBehaviour
     {
         gravity();
         timer++;
-        if((timer % 50) == 0)
+
+        if((timer % 250) == 0)
         {
             int randomInt = Random.Range(1, 3);
             if(randomInt == 1)
