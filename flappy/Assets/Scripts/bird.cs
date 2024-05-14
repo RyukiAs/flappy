@@ -26,7 +26,7 @@ public class bird : MonoBehaviour
 		gravity();
 		timer++;
 
-		if((timer % 750) == 0)
+		if((timer % 350) == 0)
 		{
 			int randomInt = Random.Range(1, 4);
 			if(randomInt == 1)
@@ -62,7 +62,7 @@ public class bird : MonoBehaviour
                 Vector2 currentPosition = prefabRect.anchoredPosition;
 
                 // Add the offset to move the image up by 1 unit
-                currentPosition.x -= 1;
+                currentPosition.x -= 1.5f;
 
                 // Check if the x-coordinate is below the threshold
                 if (currentPosition.x < -1150)
@@ -110,7 +110,7 @@ public class bird : MonoBehaviour
 		Vector2 currentPosition = movement.anchoredPosition;
 
 		// Add the offset to move the image up by 30 pixels
-		currentPosition.y -= 0.2f;
+		currentPosition.y -= 1;
 
 		// Update the anchored position
 		movement.anchoredPosition = currentPosition;
