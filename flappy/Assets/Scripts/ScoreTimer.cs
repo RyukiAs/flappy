@@ -5,17 +5,26 @@ using UnityEngine;
 
 public class ScoreTimer : MonoBehaviour
 {
-	int timer;
+    private GameController gameController;
+    int timer;
 	// Start is called before the first frame update
 	void Start()
 	{
-		timer = 0;
+        gameController = GameController.Instance;
+        if (gameController == null)
+        {
+            Debug.Log("GameController instance not found. Make sure GameControllerInitializer script is in the scene.");
+        }
+        timer = 0;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		timer++;
+		if(gameController.playing)
+		{
+            timer++;
+        }
 		GameObject parent = transform.parent.gameObject;
 		GameObject childObject = parent.transform.Find("GameObject").gameObject;
 		GameObject timerObj = childObject.transform.Find("Timer").gameObject;

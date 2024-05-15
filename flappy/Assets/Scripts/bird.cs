@@ -11,21 +11,28 @@ public class bird : MonoBehaviour
 	private Vector2 currentPosition;
 	private Vector2 targetPos;
 	private float jumpTimer = 0f;
-	
-	// Start is called before the first frame update
-	void Start()
-	{	
-		// Initial values are needed so that gravity's first instance does not result in an error - idk why?
-		// I would like to manipulate this data at class scope to not redundantly re-initialize
-		// but idk how in C#, I tried a bunch of things - nothing worked, whatever I did kept resulting in 
-		// the bird being relocated or stuck to the initial position, yuki fix this shit or our uni professors will sue us XDD
-		// clean code is important :3
-		GameObject parent = transform.parent.gameObject;
+    private GameController gameController;
+
+    // Start is called before the first frame update
+    void Start()
+	{
+        gameController = GameController.Instance;
+        if (gameController == null)
+        {
+            Debug.Log("GameController instance not found. Make sure GameControllerInitializer script is in the scene.");
+        }
+        // Initial values are needed so that gravity's first instance does not result in an error - idk why?
+        // I would like to manipulate this data at class scope to not redundantly re-initialize
+        // but idk how in C#, I tried a bunch of things - nothing worked, whatever I did kept resulting in 
+        // the bird being relocated or stuck to the initial position, yuki fix this shit or our uni professors will sue us XDD
+        // clean code is important :3
+        GameObject parent = transform.parent.gameObject;
 		GameObject childObject = parent.transform.Find("Bird").gameObject;
 		birdRectTransform = childObject.GetComponent<RectTransform>();
 		currentPosition = birdRectTransform.anchoredPosition;
-		
-	}
+
+
+}
 	public void tapBird()
 	{
 		// GameObject parent = transform.parent.gameObject;
@@ -44,16 +51,19 @@ public class bird : MonoBehaviour
 		
 		
 		// reinitialize to get updated values, because how the fuck else in C# ;D
-		GameObject parent = transform.parent.gameObject;
-		GameObject childObject = parent.transform.Find("Bird").gameObject;
-		birdRectTransform = childObject.GetComponent<RectTransform>();
-		currentPosition = birdRectTransform.anchoredPosition;
-		
-		// Calculate targetPos for the jump
-		targetPos = new Vector2(currentPosition.x , currentPosition.y + jumpHeight);
-		
-		// Reset jump timer
-		jumpTimer = 0f;
+		if(gameController.playing)
+		{
+            GameObject parent = transform.parent.gameObject;
+            GameObject childObject = parent.transform.Find("Bird").gameObject;
+            birdRectTransform = childObject.GetComponent<RectTransform>();
+            currentPosition = birdRectTransform.anchoredPosition;
+
+            // Calculate targetPos for the jump
+            targetPos = new Vector2(currentPosition.x, currentPosition.y + jumpHeight);
+
+            // Reset jump timer
+            jumpTimer = 0f;
+        }
 	}
 	// Update is called once per frame
 	void Update()
@@ -74,7 +84,11 @@ public class bird : MonoBehaviour
 		else
 		{
 			// Apply gravity continuously while the bird is in the air
-			gravity();
+			if(gameController.playing) 
+			{
+				gravity();
+			}
+			
 		}
 
 	}
