@@ -7,6 +7,8 @@ public class GameController : MonoBehaviour
 	public bool playing = true;
 	public bool initialPlayButtonEverPressed = false;
 	public int timer = 0;
+	
+	public int highScore = 0;
 
 	// Singleton pattern to ensure only one instance of GameController exists
 	private static GameController instance;
@@ -79,3 +81,4 @@ public class GameController : MonoBehaviour
 		DontDestroyOnLoad(gameObject);
 	}
 }
+

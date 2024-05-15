@@ -25,9 +25,7 @@ public class ScoreTimer : MonoBehaviour
 		{
 			gameController.incrementTimer();
         }
-		GameObject parent = transform.parent.gameObject;
-		GameObject childObject = parent.transform.Find("GameObject").gameObject;
-		GameObject timerObj = childObject.transform.Find("Timer").gameObject;
+		GameObject timerObj = transform.Find("Timer").gameObject;
 		TextMeshProUGUI text = timerObj.GetComponent<TextMeshProUGUI>();
 		text.text = gameController.timer.ToString();
 	}
