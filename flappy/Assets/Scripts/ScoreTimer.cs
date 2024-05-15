@@ -6,7 +6,7 @@ using UnityEngine;
 public class ScoreTimer : MonoBehaviour
 {
     private GameController gameController;
-    int timer;
+    //private int timer;
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -15,7 +15,7 @@ public class ScoreTimer : MonoBehaviour
         {
             Debug.Log("GameController instance not found. Make sure GameControllerInitializer script is in the scene.");
         }
-        timer = 0;
+		
 	}
 
 	// Update is called once per frame
@@ -23,12 +23,12 @@ public class ScoreTimer : MonoBehaviour
 	{
 		if(gameController.playing)
 		{
-            timer++;
+			gameController.incrementTimer();
         }
 		GameObject parent = transform.parent.gameObject;
 		GameObject childObject = parent.transform.Find("GameObject").gameObject;
 		GameObject timerObj = childObject.transform.Find("Timer").gameObject;
 		TextMeshProUGUI text = timerObj.GetComponent<TextMeshProUGUI>();
-		text.text = timer.ToString();
+		text.text = gameController.timer.ToString();
 	}
 }

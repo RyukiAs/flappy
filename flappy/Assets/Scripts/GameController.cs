@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public bool playing = true;
+    public int timer = 0;
 
     // Singleton pattern to ensure only one instance of GameController exists
     private static GameController instance;
@@ -20,6 +21,10 @@ public class GameController : MonoBehaviour
             }
             return instance;
         }
+    }
+    public void incrementTimer()
+    {
+        timer++;
     }
 
     private void Awake()

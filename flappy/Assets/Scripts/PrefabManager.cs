@@ -11,12 +11,12 @@ public class PrefabManager : MonoBehaviour
 
 	private List<GameObject> prefabs = new List<GameObject>();
     private GameController gameController;
-    int spawnTimer;
+    //int spawnTimer;
 	
 	// Start is called before the first frame update
 	void Start()
 	{
-		spawnTimer = 0;
+		//spawnTimer = 0;
         gameController = GameController.Instance;
         if (gameController == null)
         {
@@ -28,9 +28,9 @@ public class PrefabManager : MonoBehaviour
 	void Update()
 	{
 
-        spawnTimer++;
+        //spawnTimer++;
 
-        if ((spawnTimer % 350) == 0 && gameController.playing)
+        if ((gameController.timer % 350) == 0 && gameController.playing)
 		{
 			int randomInt = Random.Range(1, 4);
 			if (randomInt == 1)

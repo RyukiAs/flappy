@@ -32,7 +32,7 @@ public class bird : MonoBehaviour
 		currentPosition = birdRectTransform.anchoredPosition;
 
 
-}
+	}
 	public void tapBird()
 	{
 		// GameObject parent = transform.parent.gameObject;
