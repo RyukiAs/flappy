@@ -70,7 +70,7 @@ public class bird : MonoBehaviour
 		}
 	}
 	// Update is called once per frame
-	void Update()
+	void FixedUpdate()
 	{
 	
 		
@@ -109,7 +109,7 @@ public class bird : MonoBehaviour
 		// Add the offset to move the image up by 30 pixels
 		if (gameController.initialPlayButtonEverPressed)
 		{
-			currentPosition.y -= 1.5f;
+			currentPosition.y -= 10f;
 		}
 
 		// Update the anchored position
