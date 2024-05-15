@@ -55,7 +55,7 @@ public class bird : MonoBehaviour
 		}
 		
 		// reinitialize to get updated values, because how the fuck else in C# ;D
-		if(gameController.playing)
+		if(gameController.playing && gameController.initialPlayButtonEverPressed)
 		{
 			GameObject parent = transform.parent.gameObject;
 			GameObject childObject = parent.transform.Find("Bird").gameObject;
