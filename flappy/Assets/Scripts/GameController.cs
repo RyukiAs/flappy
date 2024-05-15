@@ -10,6 +10,8 @@ public class GameController : MonoBehaviour
 	
 	public int highScore = 0;
 
+	public int highestScore = 0;
+
 	// Singleton pattern to ensure only one instance of GameController exists
 	private static GameController instance;
 	public static GameController Instance
@@ -63,6 +65,7 @@ public class GameController : MonoBehaviour
 		playing = false;
 
 	}
+
 
 
 	private void Awake()
