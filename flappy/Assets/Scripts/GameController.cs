@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public bool playing = true;
+    public bool playing = false;
     public int timer = 0;
 
     // Singleton pattern to ensure only one instance of GameController exists
@@ -54,8 +54,6 @@ public class GameController : MonoBehaviour
 
         // Set playing to true
         playing = true;
-
-
 
     }
 
