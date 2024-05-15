@@ -27,6 +27,39 @@ public class GameController : MonoBehaviour
         timer++;
     }
 
+    public void Replay(GameObject canvas)
+    {
+        //delete prefabs, reposition bird, set playing to true, reset timer
+
+        // Destroy prefabs
+        GameObject prefabManager = canvas.transform.Find("PrefabManager").gameObject;
+        foreach (Transform child in prefabManager.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // Reposition bird
+        GameObject bird = canvas.transform.Find("Bird").gameObject;
+        RectTransform birdRect = bird.GetComponent<RectTransform>();
+        Vector3 newPos = birdRect.anchoredPosition;
+        newPos.y = -2;
+        birdRect.anchoredPosition = newPos;
+
+        //turn off lostScreen
+        GameObject lostMenu = canvas.transform.Find("LostMenu").gameObject;
+        lostMenu.SetActive(false);
+
+        // Reset timer
+        timer = 0;
+
+        // Set playing to true
+        playing = true;
+
+
+
+    }
+
+
     private void Awake()
     {
         Debug.Log("Awake called in GameController."); // Add this line

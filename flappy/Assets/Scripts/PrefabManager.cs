@@ -86,5 +86,10 @@ public class PrefabManager : MonoBehaviour
             }
 			
 		}
+		if (!gameController.playing)
+		{
+			prefabs.Clear();
+		}
+
 	}
 }
